@@ -1,10 +1,17 @@
 ## Interface: 50400
-## Title: Probably - mavmins
+## Title: Probably - mavmins - PQI
 ## Notes: ProbablyEngine Custom Profile Pack
 ## Author: Mavmins
 ## Version 1.0
 ## Dependencies: Probably
 
+##functions
 libs\functions.lua
 libs\listener.lua
+libs\PQInterfaces.lua
+libs\PQR_Data.lua
+libs\PQR_PQI.lua
+libs\Tables.lua
+
+##rotations
 rotations\shaman\enhance.lua

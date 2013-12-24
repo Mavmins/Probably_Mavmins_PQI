@@ -1,7 +1,7 @@
 -- ProbablyEngine Rotation Packager
 -- Custom Enhancement Shaman Rotation
 -- Created on Nov 20th 2013 6:12 pm
-ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement", {
+ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement PQI", {
 
 -- Buffs
 	{ "8238", "!player.enchant.mainhand" }, --Windfury
@@ -14,61 +14,65 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement", {
 	 { "57994", {
 		"target.exists",
 		"target.casting",
-		"@mavmins.interruptCast",
+		"@mavmins.interruptAll",
 		"modifier.interrupts"}},
 	 	 
 	 --Healing / Survival
 	 
 	{{
 	--Healthstone
-	{"#5512", "player.health < 45"},
+	{"#5512", "@mavmins.Healthstone"},
 			
 	--Draenei: Gift of the Naaru
 	{ "59544", {
 		"player.spell(59544).exists",
 		"!player.buff(59544)",
-		"player.health < 71"}},
+		"@mavmins.GiftOfTheNaaru"}},
 	
 	--Astral shift
 	{ "108271", {
 		"player.spell(108271).exists",
 		"!player.buff(108271)",
 		"!player.buff(30823)",
-		"player.health < 51"}},
+		"@mavmins.AstralShift"}},
 	
 	--Shamanistic Rage----
 	{ "30823", {
 		"!player.buff(108271)",
 		"!player.buff(30823)",
-		"player.health < 56"}},
+		"@mavmins.ShamanisticRage"}},
 		
 	--Healing Stream Totem
 	{ "5394", {
 		"!player.totem(5394)",
 		"!player.totem(108280)",
-		"player.health < 74"}},
+		"@mavmins.HealingStreamTotem"}},
 	
 	--Healing Tide Totem----
 	{ "108280", {
 		"!player.totem(108280)",
-		"player.health < 40"}},
+		"@mavmins.HealingTideTotem"}},
 		
 	--Healing Surge----
 	{ "8004", {
 		"player.mana >= 30",
-		"player.health < 30"}},
+		"@mavmins.HealingSurge"}},
 		
 	--Stone Bulwark Totem
 	{ "108270", {
 		"player.spell(108270).exists",
 		"!player.totem(108270)",
-		"player.health < 90"}},
+		"@mavmins.StoneBulwarkTotem"}},
 		
+	--Cleanse Spirit
+	{ "51886", {
+		"player.spell(51886).exists",
+		"@mavmins.CleanseSpirit"},
+		"player"},	
+				
 	}, "toggle.healing"},
 	
-	--Cleanse Spirit
-	--Cleanse Spirit Mouseover
-	--Purge
+
 	 
 	-- Cooldowns
 	{{
@@ -269,6 +273,12 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement", {
 		--spirit walk target > 15 yds
 		{ "58875", "target.range >= 15"}, 
 		
+		--Purge
+		{ "370", {
+		"player.spell(370).exists",
+		"@mavmins.PurgeTarget"},
+		"target"},
+		
 		--searing totem
 		{ "3599", "@mavmins.SearingTotem"},
 		
@@ -290,7 +300,7 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement", {
 			
 		{ "73680", {
 			"target.range <= 40",
-			"@mavmins.t16_2pc"}},		
+			"@mavmins.TIER16_2PC_CHECK"}},		
 		
 		--elemental_blast,if=talent.elemental_blast.enabled&buff.maelstrom_weapon.react>=1 - NOT MOVING
 		{ "117014", { 
@@ -320,7 +330,7 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement", {
 		--feral_spirit,if=set_bonus.tier15_4pc_melee=1	
 		{ "51533", {
 			"target.range <= 5",
-			"@mavmins.t15_4pc"}}, 
+			"@mavmins.TIER15_4PC_CHECK"}}, 
 			
 		--Stormblast (stormstrike during ascendence)	
 		{ "115356", {
@@ -342,7 +352,7 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement", {
 		--lightning_bolt,if=set_bonus.tier15_2pc_melee=1&buff.maelstrom_weapon.react>=4&!buff.ascendance.up		
 		{ "403", { 
 			"target.range <= 30",
-			"@mavmins.t15_2pc",
+			"@mavmins.TIER15_2PC_CHECK",
 			"player.buff(53817).count >= 4",
 			"!player.buff(114049)"}},
 				
@@ -355,7 +365,7 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement", {
 		{ "8050",{ 
 			"target.range <= 25",
 			"player.buff(73683)", 
-			"!@mavmins.t16_2pc"  }}, 
+			"!@mavmins.TIER16_2PC_CHECK"  }}, 
 			
 		{ "8050",{ 
 			"target.range <= 25",
@@ -422,6 +432,10 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement", {
 	
 
 }, {
+
+  -- PQI Globals 
+  {"InitPQI","@mavmins.PQIConfing()"},
+ 
   -- Buffs
   { "Windfury Weapon", "!player.enchant.mainhand" },
   { "Flametongue Weapon", "!player.enchant.offhand" },

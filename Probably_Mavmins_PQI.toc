@@ -7,11 +7,9 @@
 
 ##functions
 libs\functions.lua
-libs\listener.lua
 libs\PQInterfaces.lua
 libs\PQR_Data.lua
 libs\PQR_PQI.lua
-libs\Tables.lua
 
 ##rotations
 rotations\shaman\enhance.lua

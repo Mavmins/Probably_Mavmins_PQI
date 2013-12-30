@@ -5,91 +5,77 @@ if not mavmins then mavmins = {} end
 if initTargets ~= true then
 	TARGET_MODE = "ONE"
 	initTargets = true
-	print("-------MAVMINS PROBABLY ENHANCEMENT V1.0 - PQI Edition-------")	
+	print("-------MAVMINS PROBABLY ENHANCEMENT V2.0 - PQI Edition-------")	
 	print("1 Target Mode")	
 end
 
--- if macros == nil then
+if macros == nil then
 	--Macros
-	-- macros = { 
-	    -- ["SingleTarget"]   		= 1, 
-	    -- ["UseCds"]			= 1, 
-	   	-- ["AoE"]   			= 1,
-	-- } 
--- end
--- if not _singletarget then _singletarget = true
--- end
+	 macros = { 
+		["SingleTarget"]   		= 1, 
+	    ["UseCds"]			= 1, 
+	   	["AoE"]   			= 1,
+	} 
+ end
+if not _singletarget then _singletarget = true end
 
 ------------------
 --Slash Commands --
 ------------------
--- if SlashMacros == nil then
-	-- SlashMacros = true
+if SlashMacros == nil then
+	SlashMacros = true
 	
-	-- if ProbablyEngine.config.data.button_states.cooldowns then 
-	-- macros["UseCds"] = true 
-	-- else macros["UseCds"] = false
-	-- end
-	
-	-- SLASH_USECDS1 = "/usecds"
-	-- function SlashCmdList.USECDS(msg, editbox)
-		-- if macros["UseCds"] == false then
-			-- macros["UseCds"] = true
-			-- print("COOLDOWNS: |cFFFFD700ENABLED")
-			-- ProbablyEngine.buttons.toggle('cooldowns')	
-		-- else
-			-- print("COOLDOWNS: |cFFFFD700DISABLED") 
-			-- ProbablyEngine.buttons.toggle('cooldowns')
-			-- macros["UseCds"] = false
-		-- end
-	-- end
-	-- if ProbablyEngine.config.data.button_states.multitarget then 
-	-- macros["AoE"] = true 
-	-- else macros["AoE"] = false
-	-- end
-	-- SLASH_AOE1 = "/aoe"
-	-- function SlashCmdList.AOE(msg, editbox)
-		-- if macros["AoE"] == false then
-			-- macros["AoE"] = true
-			-- print("AOE: |cFF008000ENABLED")
-			-- ProbablyEngine.buttons.toggle('multitarget')
-		-- else
-			-- print("AOE: |cFF008000DISABLED") 
-			-- ProbablyEngine.buttons.toggle('multitarget')
-			-- macros["AoE"] = false
-		-- end
-	-- end
-	
-	-- SLASH_SINGLETARGET1 = "/singletarget"
-	-- function SlashCmdList.SINGLETARGET(msg, editbox)
-		-- if macros["SingleTarget"] == 1 then
-		   -- macros["SingleTarget"] = 2
-			-- print("ROTATION: |cFFFF0000TWO TARGET")	
-		-- elseif macros["SingleTarget"] == 2 then
-		  -- macros["SingleTarget"] = 3
-			-- print("ROTATION: |cFFFF0000THREE TARGET") 
-		-- else 
-		-- macros["SingleTarget"] = 1
-		-- print("ROTATION: |cFFFF0000SINGLE TARGET") 
-		-- end
-	-- end
-
-	-- SLASH_DECREASETARGET1 = "/decreasetarget"
-	-- function SlashCmdList.DECREASETARGET(msg, editbox)
-		-- if macros["SingleTarget"] == 3 then
-		   -- macros["SingleTarget"] = 2
-			-- print("ROTATION: |cFFFF0000TWO TARGETr")	
-		-- elseif macros["SingleTarget"] == 2 then
-		  -- macros["SingleTarget"] = 1
-			-- print("ROTATION: |cFFFF0000SINGLE TARGET") 
-		-- else 
-		-- macros["SingleTarget"] = 3
-		-- print("ROTATION: |cFFFF0000THREE TARGET") 
-		-- end
-	-- end
--- end
+	--if ProbablyEngine.config.data.button_states.cooldowns then 
+	--	macros["UseCds"] = true 
+	--else 
+	--	macros["UseCds"] = false
+	--end
 
 
+	SLASH_USECDS1 = "/usecds"
+	function SlashCmdList.USECDS(msg, editbox)
+		if macros["UseCds"] == false then
+			macros["UseCds"] = true
+			print("COOLDOWNS: |cFFFFD700ENABLED")
+			ProbablyEngine.buttons.toggle('cooldowns')	
+		else
+			print("COOLDOWNS: |cFFFFD700DISABLED") 
+			ProbablyEngine.buttons.toggle('cooldowns')
+			macros["UseCds"] = false
+		end
+	end
+	
+	SLASH_INCREASETARGET1 = "/increasetarget"
+	function SlashCmdList.INCREASETARGET(msg, editbox)
+		if TARGET_MODE == "ONE" then
+			TARGET_MODE = "TWO"
+			ProbablyEngine.buttons.toggle('multitarget')
+			print("ROTATION: |cFFFF0000TWO TARGETS")	
+		elseif TARGET_MODE == "TWO" then
+			TARGET_MODE = "THREE"
+			print("ROTATION: |cFFFF0000THREE TARGETS") 
+		elseif TARGET_MODE == "THREE" then
+			TARGET_MODE = "SIX"
+			print("ROTATION: |cFFFF0000SIX TARGETS") 
+		end
+	end
+	
+	SLASH_DECREASETARGET1 = "/decreasetarget"
+	function SlashCmdList.DECREASETARGET(msg, editbox)
+		if TARGET_MODE == "SIX" then
+			TARGET_MODE = "THREE"
+			print("ROTATION: |cFFFF0000THREE TARGETS")	
+		elseif TARGET_MODE == "THREE" then
+			TARGET_MODE = "TWO"
+			print("ROTATION: |cFFFF0000TWO TARGETS") 
+		elseif TARGET_MODE == "TWO" then
+			TARGET_MODE = "ONE"
+			print("ROTATION: |cFFFF0000SINGLE TARGET") 
+			ProbablyEngine.buttons.toggle('multitarget')
+		end
+	end
+	
+end
 
 function mavmins.TIER16_2PC_CHECK()
 

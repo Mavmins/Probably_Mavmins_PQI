@@ -88,23 +88,23 @@ function PQI_Starter()
 	        },
 			
 			
-			hotkeys = {
-				{	name	= "Lights Hammer",
-					enable	= true,
-					hotkeys	= {'lc'},
-					tooltip	= PlayerHex.."Assign Light's Hammer Keybind.",
-				},
-				{	name	= "Pause",
-					enable	= true,
-					hotkeys	= {'la'},
-					tooltip	= PlayerHex.."Assign Pause Keybind.",
-				},
-				{	name	= "Focus",
-					enable	= true,
-					hotkeys	= {'ls'},
-					tooltip	= PlayerHex.."Assign Mouseover Focus Keybind",
-				},
-			},
+			--hotkeys = {
+			--	{	name	= "Lights Hammer",
+			--		enable	= true,
+			--		hotkeys	= {'lc'},
+				--	tooltip	= PlayerHex.."Assign Light's Hammer Keybind.",
+			--	},
+			--	{	name	= "Pause",
+			--		enable	= true,
+			--		hotkeys	= {'la'},
+			--	--	tooltip	= PlayerHex.."Assign Pause Keybind.",
+			--	},
+			--	{	name	= "Focus",
+			--		enable	= true,
+			--		hotkeys	= {'ls'},
+				--	tooltip	= PlayerHex.."Assign Mouseover Focus Keybind",
+			--	},
+			--},
 		}
 		MAVMINS_ENHANCEMENT = PQI:AddRotation(Mavmins_Enh_Config)
 	end

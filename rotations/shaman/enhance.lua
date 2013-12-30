@@ -282,17 +282,6 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement PQI", {
 		--searing totem
 		{ "3599", "@mavmins.SearingTotem"},
 		
-		--Gloves
-		--{"#gloves", {
-		--	"player.spell(110403).exists",
-		--	"target.exists"}},
-			
-		--{"!/run UseInventoryItem(10)", {
-		--	"@mavmins.Gloves",
-		--	"!player.buff(96228)",
-		--	"!player.totem(2894)",
-		--	"target.exists"}},
-		
 		--unleash_elements,if=(talent.unleashed_fury.enabled|set_bonus.tier16_2pc_melee=1)
 		{ "73680", {
 			"target.range <= 40",

@@ -18,10 +18,10 @@ ProbablyEngine.listener.register("mavmins", "MODIFIER_STATE_CHANGED", function(.
 	local key			= select(1, ...)
 	local isDown		= select(2, ...)
 	USE_CDS = ProbablyEngine.config.data.button_states.cooldowns
-	oneTarget = ProbablyEngine.config.data.button_states.oneTarget
-	twoTarget = ProbablyEngine.config.data.button_states.twoTarget
-	threeTarget = ProbablyEngine.config.data.button_states.threeTarget
-	sixTarget = ProbablyEngine.config.data.button_states.sixTarget
+	--oneTarget = ProbablyEngine.config.data.button_states.oneTarget
+	--twoTarget = ProbablyEngine.config.data.button_states.twoTarget
+	--threeTarget = ProbablyEngine.config.data.button_states.threeTarget
+	--sixTarget = ProbablyEngine.config.data.button_states.sixTarget
 	
 	if  (key == "RSHIFT" and isDown == 1) then --cooldowns toggle
 		if USE_CDS then 

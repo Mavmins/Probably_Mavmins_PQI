@@ -25,20 +25,22 @@ if not _singletarget then _singletarget = true end
 if SlashMacros == nil then
 	SlashMacros = true
 	
-	--if ProbablyEngine.config.data.button_states.cooldowns then 
-	--	macros["UseCds"] = true 
-	--else 
-	--	macros["UseCds"] = false
-	--end
+	if ProbablyEngine.dsl.get('toggle')('cooldowns') then 
+		macros["UseCds"] = true 
+	else 
+		macros["UseCds"] = false
+	end
 
 
 	SLASH_USECDS1 = "/usecds"
 	function SlashCmdList.USECDS(msg, editbox)
 		if macros["UseCds"] == false then
 			macros["UseCds"] = true
+			xrn:message("...COOLDOWNS ACTIVATED...")
 			print("COOLDOWNS: |cFFFFD700ENABLED")
 			ProbablyEngine.buttons.toggle('cooldowns')	
 		else
+			xrn:message("...COOLDOWNS DEACTIVATED...")
 			print("COOLDOWNS: |cFFFFD700DISABLED") 
 			ProbablyEngine.buttons.toggle('cooldowns')
 			macros["UseCds"] = false
@@ -49,13 +51,16 @@ if SlashMacros == nil then
 	function SlashCmdList.INCREASETARGET(msg, editbox)
 		if TARGET_MODE == "ONE" then
 			TARGET_MODE = "TWO"
+			xrn:message("...TWO TARGETS...")
 			ProbablyEngine.buttons.toggle('multitarget')
 			print("ROTATION: |cFFFF0000TWO TARGETS")	
 		elseif TARGET_MODE == "TWO" then
 			TARGET_MODE = "THREE"
+			xrn:message("...THREE TARGETS...")
 			print("ROTATION: |cFFFF0000THREE TARGETS") 
 		elseif TARGET_MODE == "THREE" then
 			TARGET_MODE = "SIX"
+			xrn:message("...SIX TARGETS...")
 			print("ROTATION: |cFFFF0000SIX TARGETS") 
 		end
 	end
@@ -64,12 +69,15 @@ if SlashMacros == nil then
 	function SlashCmdList.DECREASETARGET(msg, editbox)
 		if TARGET_MODE == "SIX" then
 			TARGET_MODE = "THREE"
+			xrn:message("...THREE TARGETS...")
 			print("ROTATION: |cFFFF0000THREE TARGETS")	
 		elseif TARGET_MODE == "THREE" then
 			TARGET_MODE = "TWO"
+			xrn:message("...TWO TARGETS...")
 			print("ROTATION: |cFFFF0000TWO TARGETS") 
 		elseif TARGET_MODE == "TWO" then
 			TARGET_MODE = "ONE"
+			xrn:message("...ONE TARGET...")
 			print("ROTATION: |cFFFF0000SINGLE TARGET") 
 			ProbablyEngine.buttons.toggle('multitarget')
 		end

@@ -1,7 +1,7 @@
 function PQI_Starter()
 	PQR_BotLoaded()
 	PQR_RotationChanged("Mavmins")
-	PQR_Text("Mavmins Enhancement Shaman ",nil,"f58cba")
+	PQR_Text("Mavmins Enhancement Shaman ",nil,"A4A4F5")
 --------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------
 --------- Enhancement Shaman

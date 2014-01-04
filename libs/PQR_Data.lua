@@ -288,4 +288,4 @@ function xrn:message(message)
   self.time = GetTime() 
   self:Show() 
 end	
-xrn:message("\124cFFf58cba...Mavmins Enhance Shaman...")
+xrn:message("\124cFFA4A4F5...Mavmins Enhancement Shaman...")

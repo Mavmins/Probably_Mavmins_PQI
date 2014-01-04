@@ -11,6 +11,12 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement PQI", {
 	--Utility Interrupt
 	
 	--Wind Shear
+	{ "57994", {
+		"target.exists",
+		"target.casting",
+		"@mavmins.InterruptSpecials",
+		"modifier.interrupts"}},
+		
 	 { "57994", {
 		"target.exists",
 		"target.casting",

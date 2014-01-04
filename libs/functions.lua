@@ -1,23 +1,55 @@
 if not mavmins then mavmins = {} end
 
---init target vars
-
 if initTargets ~= true then
 	TARGET_MODE = "ONE"
 	initTargets = true
-	print("-------MAVMINS PROBABLY ENHANCEMENT V2.0 - PQI Edition-------")	
-	print("1 Target Mode")	
+	print("-------MAVMINS ENHANCEMENT V2.0 - PQI Edition-------")	
+	print("----------INIT SINGLE TARGET - DISABLE CDS----------")	
+	
+	if ProbablyEngine.dsl.get('toggle')('cooldowns') then 
+		ProbablyEngine.buttons.toggle('cooldowns')
+	end
+	
+	if ProbablyEngine.dsl.get('toggle')('multitarget') then 
+		ProbablyEngine.buttons.toggle('multitarget')
+	end
+end
+
+if initSpecialInterrupts == nil then
+	local RaidInterrupts = {
+	
+		--5.4..............SIEGE OF ORGRIMMAR..................
+		--Protectors of the Endless
+		144018, -- Corruption Shock, Gloom
+		--Sha of Pride
+		144379, --Mocking Blast, Manifestation of Pride
+		--Galakras
+		146728, --Chain Heal, Dragonmaw Tidal Shaman
+		--General Nazgrim
+		143431, --Magistrike, Kor'kron Arcweaver
+		143432, --Arcane Shock, Kor'kron Arcweaver
+		143473, --Empowered Chain Heal, Kor'kron Warshaman
+		--Spoils of Pandaria
+		145240, --Forbidden Magic, Mogu Shadow Ritualist
+		145218, --Harden Flesh, Animated Stone Mogu
+		144923, --Earthen Shard, Animated Stone Mogu
+		--Garrosh Hellscream
+		144583, --Ancestral Chain Heal, Farseer Wolf Rider
+		145071, --Touch of Y'Shaarj, Mind Controlled Players
+		
+	}
+	initSpecialInterrupts = true
 end
 
 if macros == nil then
 	--Macros
 	 macros = { 
 		["SingleTarget"]   		= 1, 
-	    ["UseCds"]			= 1, 
+	    ["UseCds"]			= false, 
 	   	["AoE"]   			= 1,
 	} 
  end
-if not _singletarget then _singletarget = true end
+--if not _singletarget then _singletarget = true end
 
 ------------------
 --Slash Commands --
@@ -25,25 +57,34 @@ if not _singletarget then _singletarget = true end
 if SlashMacros == nil then
 	SlashMacros = true
 	
-	if ProbablyEngine.dsl.get('toggle')('cooldowns') then 
-		macros["UseCds"] = true 
-	else 
-		macros["UseCds"] = false
-	end
-
-
 	SLASH_USECDS1 = "/usecds"
 	function SlashCmdList.USECDS(msg, editbox)
 		if macros["UseCds"] == false then
 			macros["UseCds"] = true
-			xrn:message("...COOLDOWNS ACTIVATED...")
-			print("COOLDOWNS: |cFFFFD700ENABLED")
+			xrn:message("...COOLDOWNS |cFF00FF00ACTIVATED...")
 			ProbablyEngine.buttons.toggle('cooldowns')	
+			if TARGET_MODE == "ONE" then
+				PQR_Text("SINGLE TARGET - USING CDS", nil, "00FFFF")
+			elseif TARGET_MODE == "TWO" then
+				PQR_Text("TWO TARGETS - USING CDS", nil, "00FFFF")
+			elseif TARGET_MODE == "THREE" then
+				PQR_Text("THREE TARGETS - USING CDS", nil, "00FFFF")
+			elseif TARGET_MODE == "SIX" then
+				PQR_Text("FULL AOE - USING CDS", nil, "00FFFF")
+			end	
 		else
-			xrn:message("...COOLDOWNS DEACTIVATED...")
-			print("COOLDOWNS: |cFFFFD700DISABLED") 
+			xrn:message("...COOLDOWNS |cFFFF0000DEACTIVATED...")
 			ProbablyEngine.buttons.toggle('cooldowns')
 			macros["UseCds"] = false
+			if TARGET_MODE == "ONE" then
+				PQR_Text("SINGLE TARGET - NOT USING CDS", nil, "00FFFF")
+			elseif TARGET_MODE == "TWO" then
+				PQR_Text("TWO TARGETS - NOT USING CDS", nil, "00FFFF")
+			elseif TARGET_MODE == "THREE" then
+				PQR_Text("THREE TARGETS - NOT USING CDS", nil, "00FFFF")
+			elseif TARGET_MODE == "SIX" then
+				PQR_Text("FULL AOE - NOT USING CDS", nil, "00FFFF")
+			end	
 		end
 	end
 	
@@ -53,15 +94,27 @@ if SlashMacros == nil then
 			TARGET_MODE = "TWO"
 			xrn:message("...TWO TARGETS...")
 			ProbablyEngine.buttons.toggle('multitarget')
-			print("ROTATION: |cFFFF0000TWO TARGETS")	
+			if macros["UseCds"] == true then
+				PQR_Text("TWO TARGETS - USING CDS", nil, "00FFFF")
+			elseif macros["UseCds"] == false then
+				PQR_Text("TWO TARGETS - NOT USING CDS", nil, "00FFFF")
+			end
 		elseif TARGET_MODE == "TWO" then
 			TARGET_MODE = "THREE"
 			xrn:message("...THREE TARGETS...")
-			print("ROTATION: |cFFFF0000THREE TARGETS") 
+			if macros["UseCds"] == true then
+				PQR_Text("THREE TARGETS - USING CDS", nil, "00FFFF")
+			elseif macros["UseCds"] == false then
+				PQR_Text("THREE TARGETS - NOT USING CDS", nil, "00FFFF")
+			end 
 		elseif TARGET_MODE == "THREE" then
 			TARGET_MODE = "SIX"
-			xrn:message("...SIX TARGETS...")
-			print("ROTATION: |cFFFF0000SIX TARGETS") 
+			xrn:message("...AOE MODE...")
+			if macros["UseCds"] == true then
+				PQR_Text("FULL AOE - USING CDS", nil, "00FFFF")
+			elseif macros["UseCds"] == false then
+				PQR_Text("FULL AOE - NOT USING CDS", nil, "00FFFF")
+			end
 		end
 	end
 	
@@ -70,16 +123,28 @@ if SlashMacros == nil then
 		if TARGET_MODE == "SIX" then
 			TARGET_MODE = "THREE"
 			xrn:message("...THREE TARGETS...")
-			print("ROTATION: |cFFFF0000THREE TARGETS")	
+			if macros["UseCds"] == true then
+				PQR_Text("THREE TARGETS - USING CDS", nil, "00FFFF")
+			elseif macros["UseCds"] == false then
+				PQR_Text("THREE TARGETS - NOT USING CDS", nil, "00FFFF")
+			end	
 		elseif TARGET_MODE == "THREE" then
 			TARGET_MODE = "TWO"
 			xrn:message("...TWO TARGETS...")
-			print("ROTATION: |cFFFF0000TWO TARGETS") 
+			if macros["UseCds"] == true then
+				PQR_Text("TWO TARGETS - USING CDS", nil, "00FFFF")
+			elseif macros["UseCds"] == false then
+				PQR_Text("TWO TARGETS - NOT USING CDS", nil, "00FFFF")
+			end	
 		elseif TARGET_MODE == "TWO" then
 			TARGET_MODE = "ONE"
-			xrn:message("...ONE TARGET...")
-			print("ROTATION: |cFFFF0000SINGLE TARGET") 
+			xrn:message("...SINGLE TARGET...")
 			ProbablyEngine.buttons.toggle('multitarget')
+			if macros["UseCds"] == true then
+				PQR_Text("SINGLE TARGET - USING CDS", nil, "00FFFF")
+			elseif macros["UseCds"] == false then
+				PQR_Text("SINGLE TARGET - NOT USING CDS", nil, "00FFFF")
+			end	
 		end
 	end
 	
@@ -338,6 +403,20 @@ function mavmins.interruptAll()
 					end
 				end
 				
+	end
+	
+end
+
+function mavmins.InterruptSpecials()
+
+	if PQI_MavminsENHANCEMENTFUNCTIONS_InterruptSpecialsOnly_enable == true and UnitCastingInfo("target") ~= nil then
+	
+		for j=1, #RaidInterrupts do
+			if GetSpellID(UnitCastingInfo('target')) == RaidInterrupts[j] then
+				return true
+			end
+		end
+	
 	end
 	
 end

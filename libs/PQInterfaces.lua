@@ -1,7 +1,11 @@
 function PQI_Starter()
 	PQR_BotLoaded()
 	PQR_RotationChanged("Mavmins")
-	PQR_Text("Mavmins Enhancement Shaman ",nil,"A4A4F5")
+		
+	if set_text == nil then
+		set_text = true
+		PQR_Text("SINGLE TARGET - NOT USING CDS", nil, "00FFFF")
+	end
 --------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------
 --------- Enhancement Shaman

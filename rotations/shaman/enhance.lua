@@ -233,7 +233,7 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement PQI", {
 	--stormblast
 	{ "115356", {
 		"target.range <= 30",
-		"player.buff(114049)"}}, 
+		"player.buff(114051)"}}, 
 	
 	--chain_lightning,if=active_enemies>=2&buff.maelstrom_weapon.react>=1
 	
@@ -330,7 +330,7 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement PQI", {
 		--Stormblast (stormstrike during ascendence)	
 		{ "115356", {
 			"target.range <= 30",
-			"player.buff(114049)"}}, 
+			"player.buff(114051)"}}, 
 					
 		--Stormstrike	
 		{ "17364", "target.range <= 30"}, 

@@ -414,7 +414,8 @@ function mavmins.InterruptSpecials()
 	if PQI_MavminsENHANCEMENTFUNCTIONS_InterruptSpecialsOnly_enable == true and UnitCastingInfo("target") ~= nil then
 	
 		for j=1, #RaidInterrupts do
-			if GetSpellID(UnitCastingInfo('target')) == RaidInterrupts[j] then
+			--if GetSpellID(UnitCastingInfo('target')) == RaidInterrupts[j] then
+			if UnitCastingInfo('target') == GetSpellInfo(RaidInterrupts[j]) then
 				return true
 			end
 		end

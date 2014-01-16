@@ -30,7 +30,7 @@ if initSpecialInterrupts == nil then
 		143432, --Arcane Shock, Kor'kron Arcweaver
 		143473, --Empowered Chain Heal, Kor'kron Warshaman
 		--Spoils of Pandaria
-		145240, --Forbidden Magic, Mogu Shadow Ritualist
+		145230, --Forbidden Magic, Mogu Shadow Ritualist
 		145218, --Harden Flesh, Animated Stone Mogu
 		144923, --Earthen Shard, Animated Stone Mogu
 		--Garrosh Hellscream

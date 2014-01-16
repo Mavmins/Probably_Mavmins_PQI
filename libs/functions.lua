@@ -36,6 +36,8 @@ if initSpecialInterrupts == nil then
 		--Garrosh Hellscream
 		144583, --Ancestral Chain Heal, Farseer Wolf Rider
 		145071, --Touch of Y'Shaarj, Mind Controlled Players
+		149347, --Embodied Doubt, Embodied Doubt - HEROIC
+		145275, --Embodied Doubt, Embodied Doubt - NORMAL
 		
 	}
 	initSpecialInterrupts = true

@@ -151,7 +151,9 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement PQI", {
 		
 	--lifeblood
 	--{ "121279"},
-	{"/run CastSpellByID(121279)", "player.spell(121279).cooldown = 0"},	
+	{"/run CastSpellByID(121279)", {
+		"player.spell(121279).exists",
+		"player.spell(121279).cooldown = 0"}},	
 		
 	--fire_elemental_totem,if=!active
 	{ "2894", "!player.totem(2894)"},

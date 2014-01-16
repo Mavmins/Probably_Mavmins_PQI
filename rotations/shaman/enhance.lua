@@ -94,7 +94,7 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement PQI", {
 	--	"!player.buff(105697",
 	--	"@mavmins.virmenPotion"}},
 	
-	{"!/run UseItemByName(76089)", {
+	{"/run UseItemByName(76089)", {
 		"player.totem(2894)",
 		"!player.buff(105697)",
 		"@mavmins.virmenPotion"}},
@@ -143,14 +143,15 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement PQI", {
 		"player.spell(16166).exists"}},
 	
 	--gloves
-	{"!/run UseInventoryItem(10)", {
+	{"/run UseInventoryItem(10)", {
 		"@mavmins.Gloves",
 		"!player.buff(96228)",
 		"!player.totem(2894)",
 		"target.exists"}},
 		
 	--lifeblood
-	{ "121279", "player.spell(121279).exists"},
+	--{ "121279"},
+	{"/run CastSpellByID(121279)", "player.spell(121279).cooldown = 0"},	
 		
 	--fire_elemental_totem,if=!active
 	{ "2894", "!player.totem(2894)"},
